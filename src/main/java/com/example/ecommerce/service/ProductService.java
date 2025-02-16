@@ -26,11 +26,15 @@ public class ProductService {
 
     //create Product
     public ProductModel createProduct(ProductModel product) {
-        return productRepository.save(product);
+        return productRepository.saveAndFlush(product);
     }
 
     //update Product
-    public ProductModel updateProduct(ProductModel product) {
+    public ProductModel updateProduct(Long id,ProductModel product) {
+        ProductModel Product = productRepository.findById(id).get();
+        Product.setName(product.getName());
+        Product.setDescription(product.getDescription());
+        Product.setPrice(product.getPrice());
         return productRepository.save(product);
     }
 
