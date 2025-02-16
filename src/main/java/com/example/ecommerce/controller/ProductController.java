@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
 
 import com.example.ecommerce.model.ProductModel;
 import com.example.ecommerce.service.ProductService;
@@ -41,13 +41,13 @@ public class ProductController {
 
     //create Product
     @PostMapping
-    public ProductModel createProduct(@RequestBody ProductModel product) {
+    public ProductModel createProduct(@Valid @RequestBody ProductModel product) {
         return productService.createProduct(product);
     }
 
     //update Product
     @PutMapping("/{id}")
-    public ProductModel updateProduct(@PathVariable Long id,@RequestBody ProductModel product) {
+    public ProductModel updateProduct(@PathVariable Long id,@Valid @RequestBody ProductModel product) {
         return productService.updateProduct(id,product);
     }
 
